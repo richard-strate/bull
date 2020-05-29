@@ -500,6 +500,26 @@ public class BeanTransformerTest extends AbstractBeanTransformerTest {
     }
 
     /**
+     * Test class for skipping fields.
+     */
+    public static class SkipFieldTestClass {
+      private Long id;
+    }
+
+    @Test
+    public void testIgnoreField() {
+      try {
+        SkipFieldTestClass source = new SkipFieldTestClass();
+        source.id = 0L;
+        SkipFieldTestClass target = new SkipFieldTestClass();
+        underTest.ignoreField("id").transform(source, target);
+        assertNull("Filed 'id' expected to be skipped", target.id);
+      } finally {
+        restoreUnderTestObject();
+      }
+    }
+
+    /**
      * Test that the method: {@code handleInjectionException} works as expected.
      * @param testCaseDescription the test case description
      * @param forceConstructorInjection if true it forces the injection trough constructor

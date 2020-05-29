@@ -42,6 +42,7 @@ import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import com.hotels.transformer.annotation.ConstructorArg;
 import com.hotels.transformer.constant.ClassType;
@@ -334,7 +335,10 @@ public class TransformerImpl extends AbstractBeanTransformer {
      */
     private <T, K> void injectAllFields(final T sourceObj, final K targetObject, final String breadcrumb) {
         final Class<?> targetObjectClass = targetObject.getClass();
-        injectFields(classUtils.getDeclaredFields(targetObjectClass, true), sourceObj, targetObject, targetObjectClass, breadcrumb);
+        List<Field> collect = classUtils.getDeclaredFields(targetObjectClass, true).stream().filter((k) -> {
+          return !settings.getFieldsToIgnore().contains(k.getName());
+        }).collect(Collectors.toList());
+        injectFields(collect, sourceObj, targetObject, targetObjectClass, breadcrumb);
     }
 
     /**

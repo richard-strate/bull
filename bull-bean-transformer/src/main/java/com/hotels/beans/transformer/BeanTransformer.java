@@ -77,6 +77,15 @@ public interface BeanTransformer extends Transformer<BeanTransformer> {
     BeanTransformer skipTransformationForField(String... fieldName);
 
     /**
+     * Skip/ignore fields entirely (not just skipping the transformation like {@link
+     * #skipTransformationForField(java.lang.String...)} does.
+     *
+     * @param fieldName the destination object's field(s) name that have to be skipped
+     * @return the {@link BeanTransformer} instance
+     */
+    BeanTransformer ignoreField(String... fieldName);
+
+    /**
      * Removes all the configured fields to skip.
      */
     void resetFieldsTransformationSkip();

@@ -55,6 +55,12 @@ public class TransformerSettings<T> {
     private final Set<String> fieldsToSkip = new HashSet<>();
 
     /**
+     * Contains the list of fields that should be skipped/ignored (not just skip
+     * the transformation).
+     */
+    private final Set<String> fieldsToIgnore = new HashSet<>();
+
+    /**
      * It allows to configure the transformer in order to set a default value in case some field is missing in the source object.
      * If set to true the default value is set, if false if it raises a: {@link com.hotels.transformer.error.MissingFieldException} in case of missing fields.
      */

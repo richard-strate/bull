@@ -157,6 +157,17 @@ abstract class AbstractBeanTransformer extends AbstractTransformer<BeanTransform
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BeanTransformer ignoreField(final String... fieldName) {
+          if (fieldName.length != 0) {
+              settings.getFieldsToIgnore().addAll(asList(fieldName));
+          }
+          return this;
+    }
+
     @Override
     public void resetFieldsTransformationSkip() {
         settings.getFieldsToSkip().clear();
