@@ -346,7 +346,7 @@
             <build>
                 <plugins>
                     <!-- Disable the plugin, not working on windows! -->
-                    <!--plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>${maven.gpg.plugin.version}</version>
@@ -356,7 +356,7 @@
                                 <phase>none</phase>
                             </execution>
                         </executions>
-                    </plugin-->
+                    </plugin>
                     <!-- skip some test cases during the release -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
